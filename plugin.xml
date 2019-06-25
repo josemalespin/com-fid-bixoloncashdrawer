@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com-fid-bixoloncashdrawer"
+    version="1.0.0">
+    <name>FID Bixolon Cashdrawer</name>
+    <description></description>
+    <license>MIT</license>
+    <keywords></keywords>
+    <repo>https://github.com/driftyco/cordova-plugin-template.git</repo>
+    <issue>https://github.com/driftyco/cordova-plugin-template/issues</issue>
+
+    <!-- android -->
+    <platform name="android">
+      <js-module src="www/plugin.js" name="plugin">
+        <runs/>
+
+        <!-- This is the window variable name you want, like window.MyCordovaPlugin -->
+        <clobbers target="FIDBixolon" />
+      </js-module>
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="FIDBixolon">
+          <param name="android-package" value="com.fid.FIDBixolon" />
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
+      <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+      </config-file>
+
+      <source-file src="src/android/com/fid/BixolonEntry.java" target-dir="src/com/fid/" />
+      <source-file src="src/android/com/fid/FIDBixolon.java" target-dir="src/com/fid/" />
+      <source-file src="src/android/com/fid/BixolonPrinter.java" target-dir="src/com/fid/" />
+      <source-file src="src/android/com/fid/EscapeSequence.java" target-dir="src/com/fid/" />
+
+      <lib-file arch="device" src="src/android/libs/bixolon_printer_v130.jar" />
+      <lib-file arch="device" src="src/android/libs/jpos118-controls.jar" />
+      <lib-file arch="device" src="src/android/libs/xerces.jar" />
+      <lib-file arch="device" src="src/android/libs/gson-2.8.5.jar" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <js-module src="www/plugin.js" name="plugin">
+            <runs/>
+            <clobbers target="FIDBixolon" />
+        </js-module>
+        <config-file target="config.xml" parent="/*">
+            <feature name="FIDBixolon">
+                <param name="ios-package" value="FIDBixolon" onload="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/FIDBixolon.h" />
+        <source-file src="src/ios/FIDBixolon.m" />
+    </platform>
+</plugin>

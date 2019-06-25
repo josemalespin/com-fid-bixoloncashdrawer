@@ -1,0 +1,12 @@
+{
+  "name": "com-fid-bixoloncashdrawer",
+  "version": "1.0.0",
+  "cordova": {
+    "id": "com-fid-bixoloncashdrawer",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "description": "Plugin creado en casa para conexion con impresoras bixolon"
+}
