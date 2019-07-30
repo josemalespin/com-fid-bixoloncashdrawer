@@ -370,7 +370,10 @@ public class BixolonPrinter implements ErrorListener, OutputCompleteListener, St
                     break;
             }
 
-            posPrinter.printNormal(POSPrinterConst.PTR_S_RECEIPT, strOption + data);
+            //Se corta el papel
+            String strOptionCut = EscapeSequence.getString(33);
+
+            posPrinter.printNormal(POSPrinterConst.PTR_S_RECEIPT, strOption + data + strOptionCut);
         } catch (JposException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

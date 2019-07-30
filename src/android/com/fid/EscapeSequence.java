@@ -106,6 +106,9 @@ public final class EscapeSequence {
             case 32:	// Scale 8 times vertically
                 return ESCAPE_CHARACTERS + "8vC";
 
+            case 33:	// Cut the paper at 90 percent
+                return ESCAPE_CHARACTERS + "90fP";
+
             default:
                 return "";
         }
