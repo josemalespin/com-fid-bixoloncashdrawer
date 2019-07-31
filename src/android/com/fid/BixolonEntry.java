@@ -5,7 +5,10 @@ public class BixolonEntry {
     public String printerName;
     public int printerType;
     public String data;
-    public boolean openDrawer; 
+    public boolean openDrawer;
+    public String cashierName;
+    public String operationTime;
+    public String reprint;
 
     public String getPrinterAddress() {
         return printerAddress;
@@ -21,5 +24,14 @@ public class BixolonEntry {
     }
     public boolean getOpenDrawer() {
         return openDrawer;
+    }
+    public String getCashierName() {
+        return cashierName;
+    }
+    public String getOperationTime() {
+        return operationTime;
+    }
+    public String getReprint() {
+        return reprint;
     }
 }

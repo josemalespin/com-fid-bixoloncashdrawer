@@ -50,6 +50,9 @@ public class FIDBixolon extends CordovaPlugin {
       int printerType = bEntry.getPrinterType();
       String dataPrint = bEntry.getData();
       boolean openDrawer = bEntry.getOpenDrawer();
+      String cashierName = bEntry.getCashierName();
+      String operationTime = bEntry.getOperationTime();
+      String reprint = bEntry.getReprint();
 
       if (dataPrint == null || dataPrint == "") {
         final PluginResult result = new PluginResult(PluginResult.Status.OK, "No hay informacion para imprimir");
@@ -72,14 +75,18 @@ public class FIDBixolon extends CordovaPlugin {
 
           String header = centro + bold + underline + "CREDEX\n" + nounderline +
             centro + "FID, S.A.\n" + nobold +
-            centro + "KM 8 1/2 Carretera a Masaya\n" +
-            centro + "Telefono: +(505)22647484\n" +
-            centro + "RUC: J0310000245827\n\n" + izquierda;
+            centro + cashierName + "\n" +
+            centro + operationTime + "\n\n" + izquierda;
+
+          String footer = centro + reprint + "\n\n" +
+            centro + "HE REVISADO LOS DATOS AQUÍ\nCONTENIDOS Y ESTÁN CORRECTOS,\n" +
+            centro + "Este recibo no necesita sello \nni firma del cajero.\n\n" +
+            centro + "Para reclamos llame al: +(505)2264-7484\n\n\n\n";
 
           try {
             if (bxlPrinter.printerOpen(printerType, printerName, printerAddress, false)) {
               //Thread.sleep(100);
-              if (bxlPrinter.printText(header + dataPrint, 1, 1, 1)) {
+              if (bxlPrinter.printText(header + dataPrint + footer, 1, 1, 1)) {
                 //Thread.sleep(100);
                 if (openDrawer == true) {
                   bxlPrinter.cashDrawerOpen();
