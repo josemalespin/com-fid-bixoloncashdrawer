@@ -9,6 +9,9 @@ var FIDBixolon = {
   },
   openDrawer: function(phrase, cb) {
     exec(cb, null, PLUGIN_NAME, 'openDrawer', [phrase]);
+  },
+  cashCount: function(phrase, cb) {
+    exec(cb, null, PLUGIN_NAME, 'cashCount', [phrase]);
   }
 };
 
