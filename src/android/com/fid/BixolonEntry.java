@@ -9,6 +9,7 @@ public class BixolonEntry {
     public String cashierName;
     public String operationTime;
     public String reprint;
+    public String userName;
 
     public String getPrinterAddress() {
         return printerAddress;
@@ -33,5 +34,8 @@ public class BixolonEntry {
     }
     public String getReprint() {
         return reprint;
+    }
+    public String getUserName() {
+        return userName;
     }
 }

@@ -53,6 +53,7 @@ public class FIDBixolon extends CordovaPlugin {
       String cashierName = bEntry.getCashierName();
       String operationTime = bEntry.getOperationTime();
       String reprint = bEntry.getReprint();
+      String userName = bEntry.getUserName();
 
       if (dataPrint == null || dataPrint == "") {
         final PluginResult result = new PluginResult(PluginResult.Status.OK, "No hay informacion para imprimir");
@@ -78,8 +79,9 @@ public class FIDBixolon extends CordovaPlugin {
             centro + cashierName + "\n" +
             centro + operationTime + "\n\n" + izquierda;
 
-          String footer = centro + reprint + "\n\n" +
-            centro + "HE REVISADO LOS DATOS AQUÍ\nCONTENIDOS Y ESTÁN CORRECTOS,\n" +
+          String footer = centro + reprint + "\n" +
+            centro + "Generado por: " + userName + "\n\n"
+            centro + "HE REVISADO LOS DATOS AQUI\nCONTENIDOS Y ESTAN CORRECTOS,\n" +
             centro + "Este recibo no necesita sello \nni firma del cajero.\n\n" +
             centro + "Para reclamos llame al: +(505)2264-7484\n\n\n\n";
 
