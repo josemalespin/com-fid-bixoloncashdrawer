@@ -80,7 +80,7 @@ public class FIDBixolon extends CordovaPlugin {
             centro + operationTime + "\n\n" + izquierda;
 
           String footer = centro + reprint + "\n" +
-            centro + "Generado por: " + userName + "\n\n"
+            centro + "Generado por: " + userName + "\n\n" +
             centro + "HE REVISADO LOS DATOS AQUI\nCONTENIDOS Y ESTAN CORRECTOS,\n" +
             centro + "Este recibo no necesita sello \nni firma del cajero.\n\n" +
             centro + "Para reclamos llame al: +(505)2264-7484\n\n\n\n";
