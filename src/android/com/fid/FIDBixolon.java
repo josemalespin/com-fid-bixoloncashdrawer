@@ -104,18 +104,18 @@ public class FIDBixolon extends CordovaPlugin {
                 callbackContext.sendPluginResult(result);
               } else {
                 //Fallo en printText
-                final PluginResult result = new PluginResult(PluginResult.Status.OK, "No se pudo imprimir. Fallo de papel?");
+                final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No se pudo imprimir. Fallo de papel?");
                 callbackContext.sendPluginResult(result);
               }
             } else {
               //Fallo el printerOpen
-              final PluginResult result = new PluginResult(PluginResult.Status.OK, "No se pudo conectar a la impresora");
+              final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No se pudo conectar a la impresora");
               callbackContext.sendPluginResult(result);
             }
           } catch (InterruptedException e) {
             e.printStackTrace();
             //Fallo
-            final PluginResult result = new PluginResult(PluginResult.Status.OK, "Error: " + e.getMessage());
+            final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: " + e.getMessage());
             callbackContext.sendPluginResult(result);
           }
         }
@@ -151,13 +151,13 @@ public class FIDBixolon extends CordovaPlugin {
               callbackContext.sendPluginResult(result);
             } else {
               //Fallo el printerOpen
-              final PluginResult result = new PluginResult(PluginResult.Status.OK, "No se pudo conectar a la impresora");
+              final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No se pudo conectar a la impresora");
               callbackContext.sendPluginResult(result);
             }
           } catch (InterruptedException e) {
             e.printStackTrace();
             //Fallo
-            final PluginResult result = new PluginResult(PluginResult.Status.OK, "Error: " + e.getMessage());
+            final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: " + e.getMessage());
             callbackContext.sendPluginResult(result);
           }
         }
@@ -177,7 +177,7 @@ public class FIDBixolon extends CordovaPlugin {
       String dataPrint = bEntry.getData();
 
       if (dataPrint == null || dataPrint == "") {
-        final PluginResult result = new PluginResult(PluginResult.Status.OK, "No hay informacion para imprimir");
+        final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No hay informacion para imprimir");
         callbackContext.sendPluginResult(result);
         return true;
       }
@@ -213,18 +213,18 @@ public class FIDBixolon extends CordovaPlugin {
                 callbackContext.sendPluginResult(result);
               } else {
                 //Fallo en printText
-                final PluginResult result = new PluginResult(PluginResult.Status.OK, "No se pudo imprimir. Fallo de papel?");
+                final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No se pudo imprimir. Fallo de papel?");
                 callbackContext.sendPluginResult(result);
               }
             } else {
               //Fallo el printerOpen
-              final PluginResult result = new PluginResult(PluginResult.Status.OK, "No se pudo conectar a la impresora");
+              final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No se pudo conectar a la impresora");
               callbackContext.sendPluginResult(result);
             }
           } catch (InterruptedException e) {
             e.printStackTrace();
             //Fallo
-            final PluginResult result = new PluginResult(PluginResult.Status.OK, "Error: " + e.getMessage());
+            final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: " + e.getMessage());
             callbackContext.sendPluginResult(result);
           }
         }
