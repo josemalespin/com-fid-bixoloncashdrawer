@@ -175,6 +175,7 @@ public class FIDBixolon extends CordovaPlugin {
       String printerAddress = bEntry.getPrinterAddress();
       int printerType = bEntry.getPrinterType();
       String dataPrint = bEntry.getData();
+      String cashCountType = bEntry.getCashCountType();
 
       if (dataPrint == null || dataPrint == "") {
         final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No hay informacion para imprimir");
@@ -195,7 +196,7 @@ public class FIDBixolon extends CordovaPlugin {
           String underline = EscapeSequence.getString(9);
           String nounderline = EscapeSequence.getString(10);
 
-          String header = centro + bold + underline + "ARQUEO DE CAJA\n" + nounderline +
+          String header = centro + bold + underline + cashCountType + "\n" + nounderline +
             nobold + izquierda;
 
           // String footer = centro + reprint + "\n\n" +

@@ -10,6 +10,7 @@ public class BixolonEntry {
     public String operationTime;
     public String reprint;
     public String userName;
+    public String cashCountType;
 
     public String getPrinterAddress() {
         return printerAddress;
@@ -37,5 +38,8 @@ public class BixolonEntry {
     }
     public String getUserName() {
         return userName;
+    }
+    public String getCashCountType() {
+        return cashCountType;
     }
 }
