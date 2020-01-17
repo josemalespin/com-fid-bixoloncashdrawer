@@ -144,7 +144,7 @@ public class BixolonPrinter implements ErrorListener, OutputCompleteListener, St
         if (setTargetDevice(portType, logicalName, BXLConfigLoader.DEVICE_CATEGORY_POS_PRINTER, address)) {
             try {
                 posPrinter.open(logicalName);
-                posPrinter.claim(5000);
+                posPrinter.claim(3000);
                 posPrinter.setDeviceEnabled(true);
                 posPrinter.setAsyncMode(isAsyncMode);
 
@@ -370,7 +370,10 @@ public class BixolonPrinter implements ErrorListener, OutputCompleteListener, St
                     break;
             }
 
-            posPrinter.printNormal(POSPrinterConst.PTR_S_RECEIPT, strOption + data);
+            //Se corta el papel
+            String strOptionCut = EscapeSequence.getString(33);
+
+            posPrinter.printNormal(POSPrinterConst.PTR_S_RECEIPT, strOption + data + strOptionCut);
         } catch (JposException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -1050,7 +1053,7 @@ public class BixolonPrinter implements ErrorListener, OutputCompleteListener, St
         if (setTargetDevice(mPortType, "CashDrawer", BXLConfigLoader.DEVICE_CATEGORY_CASH_DRAWER, mAddress)) {
             try {
                 cashDrawer.open("CashDrawer");
-                cashDrawer.claim(5000);
+                cashDrawer.claim(3000);
                 cashDrawer.setDeviceEnabled(true);
             } catch (JposException e) {
                 e.printStackTrace();
