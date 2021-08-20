@@ -231,6 +231,76 @@ public class FIDBixolon extends CordovaPlugin {
         }
       }).start();
     }
+    else if (action.equals("printSmax")) {
+      //Se obtiene el jSON
+      String phrase = args.getString(0);
+      Gson gson = new GsonBuilder().create();
+      bEntry = gson.fromJson(phrase, BixolonEntry.class);
+      bxlPrinter = new BixolonPrinter(mContext);
+
+      //Variables
+      //Si algo sale mal aqui se debe de levantar una alerta
+      String printerName = bEntry.getPrinterName();
+      String printerAddress = bEntry.getPrinterAddress();
+      int printerType = bEntry.getPrinterType();
+      String dataPrint = bEntry.getData();
+
+      if (dataPrint == null || dataPrint == "") {
+        final PluginResult result = new PluginResult(PluginResult.Status.OK, "No hay informacion para imprimir");
+        callbackContext.sendPluginResult(result);
+        return true;
+      }
+
+      //La conexion a la impresora tiene que correr en un hilo
+      new Thread(new Runnable() {
+        public void run() {
+
+          //El encabezado
+          String izquierda = EscapeSequence.getString(4);
+          String centro = EscapeSequence.getString(5);
+          String derecha = EscapeSequence.getString(6);
+          String bold = EscapeSequence.getString(7);
+          String nobold = EscapeSequence.getString(8);
+          String underline = EscapeSequence.getString(9);
+          String nounderline = EscapeSequence.getString(10);
+
+          String data = dataPrint;
+
+          data = data.replaceAll("_br_","\n");
+          data = data.replaceAll("_center_",centro);
+          data = data.replaceAll("_left_",izquierda);
+          data = data.replaceAll("_right_",derecha);
+          data = data.replaceAll("_b_",bold);
+          data = data.replaceAll("_n_",nobold);
+
+          try {
+            if (bxlPrinter.printerOpen(printerType, printerName, printerAddress, false)) {
+              //Thread.sleep(100);
+              if (bxlPrinter.simplePrintText(data, 1, 1, 1)) {
+                Thread.sleep(100);
+                bxlPrinter.printerClose();
+                //Exito
+                final PluginResult result = new PluginResult(PluginResult.Status.OK, "Impresión exitosa");
+                callbackContext.sendPluginResult(result);
+              } else {
+                //Fallo en printText
+                final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No se pudo imprimir. Fallo de papel?");
+                callbackContext.sendPluginResult(result);
+              }
+            } else {
+              //Fallo el printerOpen
+              final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: No se pudo conectar a la impresora. Impresora apagada? Selecciono otro dispositivo?");
+              callbackContext.sendPluginResult(result);
+            }
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+            //Fallo
+            final PluginResult result = new PluginResult(PluginResult.Status.OK, "ERROR: " + e.getMessage());
+            callbackContext.sendPluginResult(result);
+          }
+        }
+      }).start();
+    }
 
     return true;
   }

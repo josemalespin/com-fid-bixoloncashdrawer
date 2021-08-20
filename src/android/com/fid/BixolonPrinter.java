@@ -386,6 +386,27 @@ public class BixolonPrinter implements ErrorListener, OutputCompleteListener, St
         return ret;
     }
 
+    public boolean simplePrintText(String data, int alignment, int attribute, int textSize) {
+        boolean ret = true;
+
+        try {
+            if (!posPrinter.getDeviceEnabled()) {
+                return false;
+            }
+
+            posPrinter.printNormal(POSPrinterConst.PTR_S_RECEIPT, data);
+        } catch (JposException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+            ret = false;
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return ret;
+    }
+
     public boolean printImage(String path, int width, int alignment, int brightness) {
         boolean ret = true;
 

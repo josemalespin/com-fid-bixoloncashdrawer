@@ -12,7 +12,10 @@ var FIDBixolon = {
   },
   cashCount: function(phrase, cb) {
     exec(cb, null, PLUGIN_NAME, 'cashCount', [phrase]);
-  }
+  },
+  printSmax: function(phrase, cb) {
+    exec(cb, null, PLUGIN_NAME, 'printSmax', [phrase]);
+  },
 };
 
 module.exports = FIDBixolon;
